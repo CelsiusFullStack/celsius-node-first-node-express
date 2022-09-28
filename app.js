@@ -1,8 +1,7 @@
+/* https://github.com/celsiusoft/celsius-node-first-node-express*/
+
 const express = require("express");
-
 const app = express();
-
-
 app.get('/me', (request, response) => {
     try {
     response.status(200).json({

@@ -2,28 +2,26 @@
 
 const express = require("express");
 const app = express();
+require('dotenv' ).config();
+const port = process.env.PORT;
+
 app.get('/me', (request, response) => {
-    try {
     response.status(200).json({
         data:[
-                {   name   : 'Wilfredo Machado',
+                {   id     : 1,
+                    name   : 'Wilfredo Machado',
                     age    : 51,
                     country: 'Venezuela'
                 },
-                {   name   : 'Yenny Machado',
+                {   id     : 2,
+                    name   : 'Yenny Machado',
                     age    : 52,
                     country: 'Venezuela'
                 },
              ],
         verb: request.method
     })
-    } catch (err) {
-        response.status(400).json({
-            data:{
-                   error   : 'Data Not Available',
-                },
-        })    
-} 
+
 })
 
 app.post('/metas', (request, response) => {
@@ -56,8 +54,7 @@ app.patch('/metas', (request, response) => {
         verb: request.method
     })
 })
-app.put('/business/:id', (request, response) => {
-    try {
+app.put('/business', (request, response) => {
     response.status(200).json({
         data:[
                 {   id_company : 1,
@@ -72,12 +69,10 @@ app.put('/business/:id', (request, response) => {
              ],
         verb: request.method
     })
-    } catch (err) {
-        console.error(`Error while updating programming language`, err.message);
-        next(err);
-      }
+ 
 })
 
-app.listen(8000, () => {
-    console.log('Server started at port 8000')
+app.listen(port, () => {
+    console.log(`Server started at port : ${port}`)
 })
+
